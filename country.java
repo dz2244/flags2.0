@@ -1,3 +1,4 @@
+package com.example.flags20;
 public class country
     {
         int flag;
