@@ -1,5 +1,7 @@
 package com.example.flags20;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -8,15 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;
     TextView tv;
-
-    country[] s2 = new country[4];
-
-
-
-
+    country[] s2 = new country[7];
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,32 +22,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tv = findViewById(R.id.tv);
         spinner =  findViewById(R.id.spinner);
 
-        //countreis.setOnItemSelectedListener(this);
-        s2[0] = new country(R.drawable.israel, "Israel", "Jerusalem", 12000000);
-        s2[1] = new country(R.drawable.usa, "USA", "Washington D.C.", 331000000);
-        s2[2] = new country(R.drawable.france, "France", "Paris", 67000000);
-        s2[3] = new country(R.drawable.britian, "london", "Berlin", 83000000);
+        s2[0] = new country(R.drawable.flag1, "Israel", "Jerusalem", 12000000);
+        s2[1] = new country(R.drawable.flag2, "USA", "Washington D.C.", 331000000);
+        s2[2] = new country(R.drawable.flag3, "France", "Paris", 67000000);
+        s2[3] = new country(R.drawable.flag4, "greece", "atona", 83000000);
+        s2[4] = new country(R.drawable.flag5, "england", "london", 3000000);
+        s2[5] = new country(R.drawable.italy, "italy", "roma", 4000000);
+        s2[6] = new country(R.drawable.flag7, "spain", "real", 3000000);
+        spinner.setOnItemSelectedListener(this);
 
-        countreis.setOnItemSelectedListener(this);
-
-        CustomAdapter customAdapter = new CustomAdapter(this, s2);
-        countreis.setAdapter(customAdapter);
+        customAdapter adp = new customAdapter(this, s2);
+        spinner.setAdapter(adp);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long rowid)
     {
-        tV.setText("countryname: "+s2[pos].getCountryname() +"\n"+"capital: "+ s2[pos].getCapital() +"\n"+ "poplationsize: "+s2[pos].populationsize);
+        tv.setText("countryname: "+s2[pos].getCountryname() +"\n"+"capital city: "+ s2[pos].getCapital() +"\n"+ "poplation: "+s2[pos].populationsize);
     }
-
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Log.i("1", "Nothing selected");
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 }
